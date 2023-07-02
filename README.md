@@ -1,11 +1,11 @@
-# Azure Static Web APP Blazor Application with Auth0 support
+# Azure Static Web App Blazor Application with Auth0 support
 
 This code is based on Microsoft's Azure Static Web App Blazor Starter Template. [Github](https://github.com/MicrosoftDocs/mslearn-staticwebapp-dotnet)
 For more Infos on the basic setup and architecture please check the original template out.
 
 I just added support for Auth0 authentication based on this blog entry from the [Auth0-Blog](https://auth0.com/blog/support-auth0-in-azure-static-web-apps-for-blazor-wasm/).
 
-Additionally I extended that work to also support custom roles from Auth0.
+Additionally I extended that work to also support custom roles from Auth0 (or any other custom OpenID Authentication).
 
 ## Changes starting the blog entry
 
@@ -100,7 +100,10 @@ You just need to add the path to the newly written azure function for `rolesSour
 
 ### Configure Auth0 
 
-
+1. Add API for the used Auth0 Application
+2. Authorize (Machine-to-Machine) Connection
+3. Assign the read rights for user, role, role-assing, ...
+4. Save changes
 
 
 ### Add custom roles to your application
