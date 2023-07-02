@@ -22,4 +22,4 @@ Additionally I extended that work to also support custom roles from Auth0.
 
 ## Deploy to Azure Static Web Apps
 
-This application can be deployed to [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps), to learn how, check out [our quickstart guide](https://aka.ms/blazor-swa/quickstart).
+This application can be deployed to [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps), to learn how, check out [this quickstart guide](https://aka.ms/blazor-swa/quickstart).
