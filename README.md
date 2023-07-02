@@ -14,6 +14,88 @@ Additionally I extended that work to also support custom roles from Auth0.
 3. Configurate Auth0 for custom roles and use of the managment api
 4. Add custom roles there where you want to check them
 
+## Add Azure Function for roles
+
+You need to add a new azure function with an HTTP-Trigger receiving a post request.
+```json
+{
+  "auth": {
+    "rolesSource": "/api/GetRoles",
+    "identityProviders": {
+      // ...
+    }
+  }
+}
+```
+
+
+The body of the post request contains a json similar to this following format:
+```json
+{
+  "identityProvider": "auth0",
+  "userId": "72137ad3-ae00-42b5-8d54-aacb38576d76",
+  "userDetails": "ellen@contoso.com",
+  "claims": [
+      {
+          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+          "val": "ellen@contoso.com"
+      },
+      {
+          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+          "val": "Contoso"
+      },
+      {
+          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+          "val": "Ellen"
+      },
+      {
+          "typ": "name",
+          "val": "Ellen Contoso"
+      },
+      {
+          "typ": "http://schemas.microsoft.com/identity/claims/objectidentifier",
+          "val": "7da753ff-1c8e-4b5e-affe-d89e5a57fe2f"
+      },
+      {
+          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+          "val": "72137ad3-ae00-42b5-8d54-aacb38576d76"
+      },
+      {
+          "typ": "http://schemas.microsoft.com/identity/claims/tenantid",
+          "val": "3856f5f5-4bae-464a-9044-b72dc2dcde26"
+      },
+      {
+          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+          "val": "ellen@contoso.com"
+      },
+      {
+          "typ": "ver",
+          "val": "1.0"
+      }
+  ],
+  "accessToken": "eyJ0eXAiOiJKV..."
+}
+```
+
+
+The result of this message has to be successful response with a list of the roles in following json format:
+```json
+{
+  "roles": [
+    "Reader",
+    "Contributor"
+  ]
+}
+```
+
+
+For more details check out [this learn entry](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom?tabs=aad%2Cfunction#manage-roles)
+
+## Modify `staticwebapp.config.json`
+
+![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/6ad21ced-6a6d-4bc1-82d8-8cfdd1eb5f7a)
+You just need to add the path to the newly written azure function for `rolesSource` inside of `auth`.
+
 ## Template Structure
 
 - **Client**: The Blazor WebAssembly sample application
