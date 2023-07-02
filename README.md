@@ -3,7 +3,8 @@
 This code is based on Microsoft's Azure Static Web App Blazor Starter Template. [Github](https://github.com/MicrosoftDocs/mslearn-staticwebapp-dotnet)
 For more Infos on the basic setup and architecture please check the original template out.
 
-I just added support for Auth0 authentication based on this blog entry from the [Auth0-Blog](https://auth0.com/blog/support-auth0-in-azure-static-web-apps-for-blazor-wasm/)
+I just added support for Auth0 authentication based on this blog entry from the [Auth0-Blog](https://auth0.com/blog/support-auth0-in-azure-static-web-apps-for-blazor-wasm/).
+
 Additionally I extended that work to also support custom roles from Auth0.
 
 ## Changes starting the blog entry
