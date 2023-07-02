@@ -14,7 +14,7 @@ Additionally I extended that work to also support custom roles from Auth0.
 3. Configurate Auth0 for custom roles and use of the managment api
 4. Add custom roles there where you want to check them
 
-## Add Azure Function for roles
+### Add Azure Function for roles
 
 You need to add a new azure function with an HTTP-Trigger receiving a post request.
 
@@ -83,7 +83,7 @@ The result of this message has to be successful response with a list of the role
 
 For more details check out [this learn entry](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom?tabs=aad%2Cfunction#manage-roles)
 
-## Modify `staticwebapp.config.json`
+### Modify `staticwebapp.config.json`
 
 ```json
 {
@@ -97,6 +97,19 @@ For more details check out [this learn entry](https://learn.microsoft.com/en-us/
 ```
 
 You just need to add the path to the newly written azure function for `rolesSource` inside of `auth`.
+
+### Configure Auth0 
+
+
+
+
+### Add custom roles to your application
+
+![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/69c3df0e-c26d-42cb-803a-e7e6708e533d)
+
+
+![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/422f567b-c53d-4a99-b228-e88f01295bf0)
+
 
 ## Template Structure
 
