@@ -1,49 +1,18 @@
-# Blazor Starter Application
+# Azure Static Web APP Blazor Application with Auth0 support
 
-This template contains an example .NET 7 [Blazor WebAssembly](https://docs.microsoft.com/aspnet/core/blazor/?view=aspnetcore-6.0#blazor-webassembly) client application, a .NET 7 C# [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-overview), and a C# class library with shared code.
+This code is based on Microsoft's Azure Static Web App Blazor Starter Template. [Github](https://github.com/MicrosoftDocs/mslearn-staticwebapp-dotnet)
+For more Infos on the basic setup and architecture please check the original template out.
 
-> Note: Azure Functions only supports .NET 7 in the isolated process execution model
+I just added support for Auth0 authentication based on this blog entry from the [Auth0-Blog](https://auth0.com/blog/support-auth0-in-azure-static-web-apps-for-blazor-wasm/).
 
-## Getting Started
+Additionally I extended that work to also support custom roles from Auth0.
 
-1. Create a repository from the [GitHub template](https://docs.github.com/en/enterprise/2.22/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) and then clone it locally to your machine.
+## Changes starting the blog entry
 
-1. In the **ApiIsolated** folder, copy `local.settings.example.json` to `local.settings.json`
-
-1. Continue using either Visual Studio or Visual Studio Code.
-
-### Visual Studio 2022
-
-Once you clone the project, open the solution in the latest release of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the Azure workload installed, and follow these steps:
-
-1. Right-click on the solution and select **Set Startup Projects...**.
-
-1. Select **Multiple startup projects** and set the following actions for each project:
-    - *Api* - **Start**
-    - *Client* - **Start**
-    - *Shared* - None
-
-1. Press **F5** to launch both the client application and the Functions API app.
-
-### Visual Studio Code with Azure Static Web Apps CLI for a better development experience (Optional)
-
-1. Install the [Azure Static Web Apps CLI](https://www.npmjs.com/package/@azure/static-web-apps-cli) and [Azure Functions Core Tools CLI](https://www.npmjs.com/package/azure-functions-core-tools).
-
-1. Open the folder in Visual Studio Code.
-
-1. Delete file `Client/wwwroot/appsettings.Development.json`
-
-1. In the VS Code terminal, run the following command to start the Static Web Apps CLI, along with the Blazor WebAssembly client application and the Functions API app:
-
-    ```bash
-    swa start http://localhost:5000 --api-location http://localhost:7071
-    ```
-
-    The Static Web Apps CLI (`swa`) starts a proxy on port 4280 that will forward static site requests to the Blazor server on port 5000 and requests to the `/api` endpoint to the Functions server. 
-
-1. Open a browser and navigate to the Static Web Apps CLI's address at `http://localhost:4280`. You'll be able to access both the client application and the Functions API app in this single address. When you navigate to the "Fetch Data" page, you'll see the data returned by the Functions API app.
-
-1. Enter Ctrl-C to stop the Static Web Apps CLI.
+1. Add a new Azure Function retreives the role information from Auth0
+2. Add `rolesSource` entry to `auth` in `staticwebapp.config.json`
+3. Configurate Auth0 for custom roles and use of the managment api
+4. Add custom roles there where you want to check them
 
 ## Template Structure
 
@@ -53,4 +22,4 @@ Once you clone the project, open the solution in the latest release of [Visual S
 
 ## Deploy to Azure Static Web Apps
 
-This application can be deployed to [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps), to learn how, check out [our quickstart guide](https://aka.ms/blazor-swa/quickstart).
+This application can be deployed to [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps), to learn how, check out [this quickstart guide](https://aka.ms/blazor-swa/quickstart).
