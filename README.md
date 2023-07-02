@@ -22,7 +22,7 @@ You need to add a new azure function with an HTTP-Trigger receiving a post reque
   "auth": {
     "rolesSource": "/api/GetRoles",
     "identityProviders": {
-      // ...
+      ...
     }
   }
 }
@@ -94,6 +94,7 @@ For more details check out [this learn entry](https://learn.microsoft.com/en-us/
 ## Modify `staticwebapp.config.json`
 
 ![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/6ad21ced-6a6d-4bc1-82d8-8cfdd1eb5f7a)
+
 You just need to add the path to the newly written azure function for `rolesSource` inside of `auth`.
 
 ## Template Structure
