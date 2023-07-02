@@ -1,4 +1,5 @@
 ﻿@page "/fetchdata"
+@attribute [Authorize(Roles = "admin")]
 @using BlazorApp.Shared 
 @inject HttpClient Http
 
