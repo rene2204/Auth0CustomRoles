@@ -47,10 +47,9 @@ namespace Api
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            var content = await response.Content.ReadAsStreamAsync();
-            var token = await JsonSerializer.DeserializeAsync<dynamic>(content);
+            var token = await response.Content.ReadFromJsonAsync<BearerToken>();
 
-            return token.access_token;
+            return token.Access_Token;
         }
 
         private async Task<IEnumerable<string>> GetRolesFromManagementApiAsync(ClientPrincipal data)
@@ -79,8 +78,7 @@ namespace Api
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
         {
             _logger.LogInformation("Request for GetRoles retrieved");
-
-            var data = await JsonSerializer.DeserializeAsync<ClientPrincipal>(req.Body);
+            var data = await req.ReadFromJsonAsync<ClientPrincipal>();
 
             //get roles from Auth0 Management API
             var roles = await GetRolesFromManagementApiAsync(data);
