@@ -17,16 +17,8 @@ Additionally I extended that work to also support custom roles from Auth0.
 ## Add Azure Function for roles
 
 You need to add a new azure function with an HTTP-Trigger receiving a post request.
-```json
-{
-  "auth": {
-    "rolesSource": "/api/GetRoles",
-    "identityProviders": {
-      ...
-    }
-  }
-}
-```
+
+![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/b690a045-991c-4b0e-87a2-eda3d3fc725c)
 
 
 The body of the post request contains a json similar to this following format:
@@ -93,7 +85,16 @@ For more details check out [this learn entry](https://learn.microsoft.com/en-us/
 
 ## Modify `staticwebapp.config.json`
 
-![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/6ad21ced-6a6d-4bc1-82d8-8cfdd1eb5f7a)
+```json
+{
+  "auth": {
+    "rolesSource": "/api/GetRoles",
+    "identityProviders": {
+      ...
+    }
+  }
+}
+```
 
 You just need to add the path to the newly written azure function for `rolesSource` inside of `auth`.
 
