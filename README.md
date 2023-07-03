@@ -32,38 +32,7 @@ The body of the post request contains a json similar to this following format:
           "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
           "val": "ellen@contoso.com"
       },
-      {
-          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-          "val": "Contoso"
-      },
-      {
-          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
-          "val": "Ellen"
-      },
-      {
-          "typ": "name",
-          "val": "Ellen Contoso"
-      },
-      {
-          "typ": "http://schemas.microsoft.com/identity/claims/objectidentifier",
-          "val": "7da753ff-1c8e-4b5e-affe-d89e5a57fe2f"
-      },
-      {
-          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
-          "val": "72137ad3-ae00-42b5-8d54-aacb38576d76"
-      },
-      {
-          "typ": "http://schemas.microsoft.com/identity/claims/tenantid",
-          "val": "3856f5f5-4bae-464a-9044-b72dc2dcde26"
-      },
-      {
-          "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-          "val": "ellen@contoso.com"
-      },
-      {
-          "typ": "ver",
-          "val": "1.0"
-      }
+     ...
   ],
   "accessToken": "eyJ0eXAiOiJKV..."
 }
@@ -82,6 +51,9 @@ The result of this message has to be successful response with a list of the role
 
 
 For more details check out [this learn entry](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom?tabs=aad%2Cfunction#manage-roles)
+
+### Get roles from Auth0 management api
+
 
 ### Modify `staticwebapp.config.json`
 
