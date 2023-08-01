@@ -80,11 +80,19 @@ You just need to add the path to the newly written azure function for `rolesSour
 
 ### Add custom roles to your application
 
+If you want to make a whole page available only for users with the role 'admin' the code looks like this:
+
+
 ![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/69c3df0e-c26d-42cb-803a-e7e6708e533d)
 
+You just need to add attribute `Authorize` including the parameter for the the role with `@attribute` on the top part of the page.
+
+If you only want to make some parts of the page or component visible for authorized users you can use `AuthorizeView`.
 
 ![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/422f567b-c53d-4a99-b228-e88f01295bf0)
 
+You can also define two diffrent kind of child elements accordingly if or if not you are authorized with `Authorized` and `NotAuthorized` as children of `AuthorizeView`.
+For more details check out [this link.](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/?view=aspnetcore-7.0)
 
 ## Template Structure
 
