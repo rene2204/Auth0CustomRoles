@@ -18,8 +18,28 @@ Additionally I extended that work to also support custom roles from Auth0 (or an
 
 You need to add a new azure function with an HTTP-Trigger receiving a post request.
 
-![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/b690a045-991c-4b0e-87a2-eda3d3fc725c)
 
+Code at `/Api/AuthFunction.cs`
+
+```cs
+[Function("GetRoles")]
+public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
+{
+    _logger.LogInformation("Request for GetRoles retrieved");
+    var data = await req.ReadFromJsonAsync<ClientPrincipal>();
+
+    //get roles from Auth0 Management API
+    var roles = await GetRolesFromManagementApiAsync(data);
+    roles ??= Array.Empty<string>();
+    var result = new { roles = roles.ToArray() };
+
+    //create response
+    var response = req.CreateResponse(HttpStatusCode.OK);
+    await response.WriteAsJsonAsync(result);
+
+    return response;
+}
+```
 
 The body of the post request contains a json similar to this following format:
 ```json
