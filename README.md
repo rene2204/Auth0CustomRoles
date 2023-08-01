@@ -19,7 +19,7 @@ Additionally I extended that work to also support custom roles from Auth0 (or an
 You need to add a new azure function with an HTTP-Trigger receiving a post request.
 
 
-Code at `/Api/AuthFunction.cs`
+Code from [`/Api/AuthFunction.cs`](https://github.com/rene2204/Auth0CustomRoles/blob/main/Api/AuthFunction.cs)
 
 ```cs
 [Function("GetRoles")]
@@ -102,7 +102,7 @@ You just need to add the path to the newly written azure function for `rolesSour
 
 If you want to make a whole page available only for users with the role 'admin' the code looks like this:
 
-Code at `/Client/Pages/FetchData.razor`
+Code from [`/Client/Pages/FetchData.razor`](https://github.com/rene2204/Auth0CustomRoles/blob/main/Client/Pages/FetchData.razor)
 ```cs
 ﻿@page "/fetchdata"
 @attribute [Authorize(Roles = "admin")]
@@ -118,7 +118,32 @@ You just need to add attribute `Authorize` including the parameter for the the r
 
 If you only want to make some parts of the page or component visible for authorized users you can use `AuthorizeView`.
 
-![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/422f567b-c53d-4a99-b228-e88f01295bf0)
+Code from [`/Client/Shared/NavMenu.razor`](https://github.com/rene2204/Auth0CustomRoles/blob/main/Client/Shared/NavMenu.razor)
+```cs
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <AuthorizeView>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </div>
+        </AuthorizeView>
+        <AuthorizeView Roles="admin">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </div>
+        </AuthorizeView>
+    </nav>
+</div>
+```
 
 You can also define two diffrent kind of child elements accordingly if or if not you are authorized with `Authorized` and `NotAuthorized` as children of `AuthorizeView`.
 For more details check out [this link.](https://learn.microsoft.com/en-us/aspnet/core/blazor/security/?view=aspnetcore-7.0)
