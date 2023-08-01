@@ -102,8 +102,17 @@ You just need to add the path to the newly written azure function for `rolesSour
 
 If you want to make a whole page available only for users with the role 'admin' the code looks like this:
 
+Code at `/Client/Pages/FetchData.razor`
+```cs
+﻿@page "/fetchdata"
+@attribute [Authorize(Roles = "admin")]
+@using BlazorApp.Shared 
+@inject HttpClient Http
 
-![image](https://github.com/rene2204/Auth0CustomRoles/assets/64254506/69c3df0e-c26d-42cb-803a-e7e6708e533d)
+<h1>Weather forecast</h1>
+
+//rest of the page
+```
 
 You just need to add attribute `Authorize` including the parameter for the the role with `@attribute` on the top part of the page.
 
